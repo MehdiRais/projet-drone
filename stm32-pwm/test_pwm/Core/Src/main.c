@@ -97,14 +97,17 @@ int main(void)
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
 
   /* USER CODE END 2 */
+  HAL_Delay(10000);
+  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 500);
+
+
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  GPIO_PinState  state = 0;
   while (1)
   {
-	  state = HAL_GPIO_ReadPin(TEST_GPIO_Port, TEST_Pin);
+	  /*state = HAL_GPIO_ReadPin(TEST_GPIO_Port, TEST_Pin);
       printf("state = %d\n", state);
 	  if(state == 1)
 		  HAL_GPIO_WritePin(LED_PIN13_GPIO_Port, LED_PIN13_Pin, GPIO_PIN_SET); //eteint la LED
@@ -112,6 +115,7 @@ int main(void)
 		  HAL_GPIO_WritePin(LED_PIN13_GPIO_Port, LED_PIN13_Pin, GPIO_PIN_RESET); //allume la LED
 
 	  HAL_Delay(100);
+	  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, i = i+step);*/
 
   }
     /* USER CODE END WHILE */
@@ -180,9 +184,9 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 10;
+  htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 42949672;
+  htim2.Init.Period = 5000;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -205,7 +209,7 @@ static void MX_TIM2_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 10;
+  sConfigOC.Pulse = 2500;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)

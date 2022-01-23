@@ -60,8 +60,8 @@ all: main-build
 main-build: test_pwm.elf secondary-outputs
 
 # Tool invocations
-test_pwm.elf: $(OBJS) $(USER_OBJS) C:\Users\mrais\Documents\test_pwm\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "test_pwm.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\mrais\Documents\test_pwm\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test_pwm.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+test_pwm.elf: $(OBJS) $(USER_OBJS) C:\Users\mrais\Documents\GitHub\projet-drone\stm32-pwm\test_pwm\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "test_pwm.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\mrais\Documents\GitHub\projet-drone\stm32-pwm\test_pwm\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test_pwm.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
